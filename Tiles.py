@@ -26,11 +26,33 @@ class tile_bag():
         l = l.upper()
         return  self.tiles[l][0]
 
-    def wordscore(self,word):
+    def wordscore(self,word,lexicon):
         # returns the score of a set of letters
         # TODO does this really belong here, or in another object/method?
-        # TODO - check that the word is valid!
         score = 0
-        for letter in word:
-            score += self.valueof(letter)
+        if lexicon.find(word):
+            for letter in word:
+                score += self.valueof(letter)
         return score
+
+    # some other getters that might potentially be useful
+    def showtilevalues(self):
+        # return a list of letters and their values
+        scorechart = {}
+        for k in self.tiles:
+            # extract the value ofthe tile, with is the 1-eth element of the array
+            v = self.tiles[k][1]
+            if v in scorechart:
+                scorechart[v].append(k)
+            else:
+                scorechart[v] = [k]
+        output = ""
+        for points in scorechart:
+            #print(str(points) + "points -  " +  str(scorechart[points]))
+            pts = str(points)
+            lets = ""
+            scorechart[points].sort()
+            for l in scorechart[points]:
+                lets += l + " "
+            print pts + " points: " + lets
+        print("\n")

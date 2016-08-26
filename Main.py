@@ -3,6 +3,7 @@ import Dictionary, Anagrams, Tiles
 """ STATIC VALUES"""
 
 # some static values
+OPTION_SHOWTILEVALUES = '0'
 OPTION_FINDWORD = '1'
 OPTION_FINDANAGRAMS = '2'
 OPTION_WORDVALUE = '3'
@@ -40,6 +41,7 @@ def show_menu():
     lines = []
     lines.append("Welcome to Anagramarama!")
     lines.append("You have some options available:")
+    lines.append("\t0. See a chart showing letter point values")
     lines.append("\t1. Check if a word is in my dictionary")
     lines.append("\t2. Find anagrams of a word or series of letters")
     lines.append("\t3. Determine the score for a word.")
@@ -58,6 +60,12 @@ def do_menu():
         user_choice = raw_input()
         handle_menu_choice(user_choice)
 # end do_menu
+
+# shows chart of tile values
+def show_tile_values():
+    bag.showtilevalues()
+    do_menu()
+# end show_tile_values
 
 # verifies if a word is in the dictionary
 def check_word():
@@ -92,8 +100,8 @@ def word_value():
     # solicit input
     user_word = raw_input("Please enter a word whose value (score) you wish to determine, or leave blank to exit.\n> ")
     while user_word != "":
-        points = bag.wordscore(user_word)
-        print(user_word + " is worth " + str(points) + " points.")
+        points = bag.wordscore(user_word,sDict)
+        print(user_word + " is worth " + str(points) + " points (zero points means the word is not in the dictionary).")
         user_word = raw_input("Please enter another word whose value you wish to determine, or leave blank to exit.\n> ")
     # return to main menu when done
     do_menu()
@@ -119,6 +127,8 @@ def handle_menu_choice(i):
         # option 4 is "quit", so exit the program
         is_valid = True # defensive coding - let's not cause an infinite loop!
         exit()
+    elif (i == OPTION_SHOWTILEVALUES):
+        show_tile_values()
     else:
         print("You have made an invalid selection.  Please try again.\n")
 # end handle_menu_choice
