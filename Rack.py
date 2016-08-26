@@ -21,7 +21,7 @@ class Rack():
     def loadtiles(self,bag):
         # add tiles to rack from bag
         # debugging: print(bag.tiles)
-        while (len(self.tiles)<7):
+        while (len(self.tiles)<7 and bag.gettilecount() > 0):
             drawn = chr(random.randint(65, 90))
             if (drawn in bag.tiles and bag.numberof(drawn) > 0):
                 # if the letter is in the bag, add it to the rack and decrement the number of that letter available.

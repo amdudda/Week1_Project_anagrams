@@ -123,6 +123,7 @@ def handle_menu_choice(i):
     elif (i == OPTION_PLAYGAME):
         print("I'm sorry, the game has not been implemented yet!\n")
         game = Game.Game(sDict,aDict,bag)
+        game.playgame()
         is_valid = False
     elif (i == OPTION_QUIT):
         # option 4 is "quit", so exit the program

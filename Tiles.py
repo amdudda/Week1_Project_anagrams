@@ -39,7 +39,7 @@ class TileBag():
                 score += self.valueof(letter)
         return score
 
-    # some other getters that might potentially be useful
+    # MISC GETTERS / SETTERS
     def showtilevalues(self):
         # return a list of letters and their values
         scorechart = {}
@@ -63,3 +63,10 @@ class TileBag():
 
     def gettiles(self):
         return self.tiles
+
+    def gettilecount(self):
+        # returns total number of available tiles
+        tilecount = 0
+        for k in self.tiles:
+            tilecount += self.tiles[k][0]
+        return tilecount
