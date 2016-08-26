@@ -29,13 +29,14 @@ bag = Tiles.TileBag()
 # this track whether user has been making valid menu choices.
 is_valid = False
 
-# TODO build user interface
+
+""" MAIN METHOD FUNCTIONS"""
+# user interface outline
 # main menu
 # - check if word is valid
 # - look for anagrams
 # - play game
 
-""" MAIN METHOD FUNCTIONS"""
 # prints out the main menu
 def show_menu():
     lines = []

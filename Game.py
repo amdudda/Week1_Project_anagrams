@@ -25,7 +25,6 @@ class Game():
         6. refill the rack
         7. return to #1
         """
-
         while (a_play != "x" and a_play !="X"):
             self.showrack()
             # verify the rack has valid plays available, else load new rack.
@@ -38,11 +37,15 @@ class Game():
                     self.player.rack.loadtiles(self.bag)
                 else:
                     print("That is not a valid play.  Please try again.\n")
-            else:
+                print("There are " + str(self.bag.gettilecount()) + " tiles left.")
+            elif (self.bag.gettilecount() > 0):
                 # we need to replace the rack and try again
                 print("This rack has no legal plays.  Loading a fresh set of letters.\n")
                 self.player.rack.refill(self.bag)
-                # TODO: fix case where we run out of tiles and no valid plays remain
+            else:
+                # handle case where we run out of tiles and no valid plays remain
+                print("Game over!  Thank you for playing.\n")
+                break
 
     # end playgame
 
