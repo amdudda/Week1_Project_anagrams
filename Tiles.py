@@ -29,6 +29,7 @@ class tile_bag():
     def wordscore(self,word):
         # returns the score of a set of letters
         # TODO does this really belong here, or in another object/method?
+        # TODO - check that the word is valid!
         score = 0
         for letter in word:
             score += self.valueof(letter)

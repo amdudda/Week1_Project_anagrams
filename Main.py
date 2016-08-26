@@ -87,6 +87,17 @@ def find_anagrams():
     do_menu()
 # end find_anagrams
 
+def word_value():
+    # fetches the value of a word
+    # solicit input
+    user_word = raw_input("Please enter a word whose value (score) you wish to determine, or leave blank to exit.\n> ")
+    while user_word != "":
+        points = bag.wordscore(user_word)
+        print(user_word + " is worth " + str(points) + " points.")
+        user_word = raw_input("Please enter another word whose value you wish to determine, or leave blank to exit.\n> ")
+    # return to main menu when done
+    do_menu()
+
 # handles main menu user input
 def handle_menu_choice(i):
     global is_valid
@@ -99,8 +110,8 @@ def handle_menu_choice(i):
         find_anagrams()
         is_valid = True # defensive coding - let's not cause an infinite loop!
     elif (i == OPTION_WORDVALUE):
-        print("I'm sorry, word scoring has not been implemented yet!\n")
-        is_valid = False
+        word_value()
+        is_valid = True
     elif (i == OPTION_PLAYGAME):
         print("I'm sorry, the game has not been implemented yet!\n")
         is_valid = False
