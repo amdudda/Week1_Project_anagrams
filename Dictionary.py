@@ -2,7 +2,7 @@
 Helper object that coverts a file to a list so that we can do lookups on it
 """
 
-class dictionary():
+class Dictionary():
     # build the dictionary - takes a file name as an argument so it know which file to use to build the list
     def __init__(self,filename):
         self.words = []

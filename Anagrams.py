@@ -5,7 +5,7 @@ all other words that rearrange to the same alphabetic sequence.  The alphabetic 
 key for a dictionary lookup.
 """
 
-class anagrams():
+class Anagrams():
     def __init__(self,lexicon):
         # create our dictionary
         self.cohorts = {}

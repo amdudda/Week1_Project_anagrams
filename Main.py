@@ -1,4 +1,4 @@
-import Dictionary, Anagrams, Tiles
+import Dictionary, Anagrams, Tiles, Game
 
 """ STATIC VALUES"""
 
@@ -15,15 +15,15 @@ OPTION_QUIT = '5'
 wordlist = "scrabble.txt"
 
 # build my dictionary
-sDict = Dictionary.dictionary(wordlist)
+sDict = Dictionary.Dictionary(wordlist)
 # debugging: print(sDict.words[1])
 # debugging: print(sDict.find("zxzxz"))
 
 # build my anagram cohort dictionary
-aDict = Anagrams.anagrams(sDict.words)
+aDict = Anagrams.Anagrams(sDict.words)
 
 # build my bag of tiles
-bag = Tiles.tile_bag()
+bag = Tiles.TileBag()
 #debugging: print('z: ' + str(bag.valueof('z')))
 
 # this track whether user has been making valid menu choices.
@@ -122,6 +122,7 @@ def handle_menu_choice(i):
         is_valid = True
     elif (i == OPTION_PLAYGAME):
         print("I'm sorry, the game has not been implemented yet!\n")
+        game = Game.Game(sDict,aDict,bag)
         is_valid = False
     elif (i == OPTION_QUIT):
         # option 4 is "quit", so exit the program

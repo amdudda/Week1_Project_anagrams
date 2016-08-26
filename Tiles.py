@@ -4,7 +4,7 @@ For now, hard code the key-value pairs, but eventually we'd want to import a fil
 so that the game could be played in other languages.
 """
 
-class tile_bag():
+class TileBag():
     # this holds a dictionary, one letter for each alphabet, and stores the number of tiles and its value in a list.
     # I'm using the Scrabble distribution - see https://en.wikipedia.org/wiki/Scrabble_letter_distributions#English
     def __init__(self):
@@ -24,7 +24,11 @@ class tile_bag():
     def numberof(self,l):
         # returns the number of tiles of that letter currently in the bag - make sure we convert the character to uppercase
         l = l.upper()
-        return  self.tiles[l][0]
+        return self.tiles[l][0]
+
+    def decrementtile(self,l):
+        # decrements the number of tiles of that letter available
+        self.tiles[l][0] -= 1
 
     def wordscore(self,word,lexicon):
         # returns the score of a set of letters
@@ -56,3 +60,6 @@ class tile_bag():
                 lets += l + " "
             print pts + " points: " + lets
         print("\n")
+
+    def gettiles(self):
+        return self.tiles
