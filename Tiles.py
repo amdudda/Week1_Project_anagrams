@@ -30,6 +30,10 @@ class TileBag():
         # decrements the number of tiles of that letter available
         self.tiles[l][0] -= 1
 
+    def incrementtile(self,l):
+        # decrements the number of tiles of that letter available
+        self.tiles[l][0] += 1
+
     def wordscore(self,word,lexicon):
         # returns the score of a set of letters
         # TODO does this really belong here, or in another object/method?

@@ -13,6 +13,7 @@ class Game():
     # end init
 
     def playgame(self):
+        a_play = ""
         """
         yay encapsulation, we should be able to play the game from here... we may only hope...
         what does gameplay look like?
@@ -24,13 +25,24 @@ class Game():
         6. refill the rack
         7. return to #1
         """
-        self.showrack()
-        # solicit input and validate it
-        a_play = raw_input("Please enter a word.")
-        print(self.player.rack.isvalidplay(a_play), self.lexicon.find(a_play))
-        if (self.player.rack.isvalidplay(a_play) and self.lexicon.find(a_play)):
-            print("That is a valid play!")
-        # TODO: SCREEE-KRUNCH, need to implement more game steps
+
+        while (a_play != "x" and a_play !="X"):
+            self.showrack()
+            # verify the rack has valid plays available, else load new rack.
+            if self.player.rack.hasvalidplay(self.anagrams):
+                # solicit input and validate it
+                a_play = raw_input("Please enter a word, or type x to exit.")
+                if (self.player.rack.isvalidplay(a_play) and self.lexicon.find(a_play)):
+                    print("That is a valid play!\n")
+                    self.player.rack.playtiles(a_play)
+                    self.player.rack.loadtiles(self.bag)
+                else:
+                    print("That is not a valid play.  Please try again.\n")
+            else:
+                # we need to replace the rack and try again
+                print("This rack has no legal plays.  Loading a fresh set of letters.\n")
+                self.player.rack.refill(self.bag)
+                # TODO: fix case where we run out of tiles and no valid plays remain
 
     # end playgame
 

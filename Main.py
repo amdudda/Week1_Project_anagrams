@@ -121,7 +121,7 @@ def handle_menu_choice(i):
         word_value()
         is_valid = True
     elif (i == OPTION_PLAYGAME):
-        print("I'm sorry, the game has not been implemented yet!\n")
+        # print("I'm sorry, the game has not been implemented yet!\n")
         game = Game.Game(sDict,aDict,bag)
         game.playgame()
         is_valid = False

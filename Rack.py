@@ -14,6 +14,8 @@ class Rack():
     # end init
 
     def playtiles(self,word):
+        # convert to uppercase
+        word = word.upper()
         for l in word:
             self.tiles.remove(l)
     # end playtiles
@@ -42,3 +44,13 @@ class Rack():
         # if we get past all that, it's a valid play as far as the rack cares and we can return true.
         return True
 
+    def hasvalidplay(self,anagrams):
+        totest = ''.join(self.tiles).lower() # argh the mighty case monster strikes again!
+        return (len(anagrams.findanagrams(totest)) > 0)
+
+    def refill(self,bag):
+        # return tiles to the bag
+        for letter in self.tiles:
+            bag.incrementtile(letter)
+            self.tiles.remove(letter)
+        self.loadtiles(bag)
