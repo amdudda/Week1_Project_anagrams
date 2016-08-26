@@ -36,9 +36,33 @@ def show_menu():
         print(l)
 # end show_menu
 
-# hendles main menu user input
+def do_menu():
+    global is_valid
+    is_valid = False
+    while not is_valid:
+        # solicit user input and act on it until we get valid input
+        user_choice = raw_input()
+        handle_menu_choice(user_choice)
+# end do_menu
+
+# verifies if a word is in the dictionary
+def check_word():
+    user_word = raw_input("Please enter a word, or leave blank to exit.\n> ")
+    while user_word != "":
+        if (sDict.find(user_word)):
+            print(user_word + " is in the dictionary!")
+        else:
+            print("Sorry, " + user_word + " is not in the dictionary.")
+        user_word = raw_input("Please enter a word, or leave blank to exit.")
+    # return to the main menu when done
+    do_menu()
+# end check_word
+
+# handles main menu user input
 def handle_menu_choice(i):
     global is_valid
+    if (i == '1'):
+        check_word()
     if (i == '4'):
         # option 4 is "quit", so exit the program
         is_valid = True # defensive coding - let's not cause an infinite loop!
@@ -46,14 +70,11 @@ def handle_menu_choice(i):
     else:
         print("You have made an invalid selection.  Please try again.\n")
         show_menu()
-
 # end handle_menu_choice
+
+
 
 """ BODY OF CODE  """
 # print our menu
 show_menu()
-is_valid = False
-while not is_valid:
-    # solicit user input and act on it until we get valid input
-    user_choice = raw_input()
-    handle_menu_choice(user_choice)
+do_menu()
