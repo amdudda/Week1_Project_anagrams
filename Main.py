@@ -39,7 +39,7 @@ is_valid = False
 # prints out the main menu
 def show_menu():
     lines = []
-    lines.append("Welcome to Anagramarama!")
+    #lines.append("Welcome to Anagramarama!")
     lines.append("You have some options available:")
     lines.append("\t0. See a chart showing letter point values")
     lines.append("\t1. Check if a word is in my dictionary")
@@ -84,7 +84,7 @@ def find_anagrams():
     # find anagrams of a word
     user_word = raw_input("Please enter a word or string of letters to check, or leave blank to exit.\n> ")
     while user_word != "":
-        cohort = aDict.lookup(user_word)
+        cohort = aDict.findanagrams(user_word)
         if (cohort != None):
             print(cohort)
         else:
@@ -136,5 +136,7 @@ def handle_menu_choice(i):
 
 
 """ BODY OF CODE  """
+# welcome the user
+print("Welcome to Anagramarama!")
 # print our menu
 do_menu()
