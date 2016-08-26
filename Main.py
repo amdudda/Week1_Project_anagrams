@@ -3,10 +3,11 @@ import Dictionary, Anagrams, Tiles
 """ STATIC VALUES"""
 
 # some static values
-OPTION_FINDWORD = 1
-OPTION_FINDANAGRAMS = 2
-OPTION_PLAYGAME = 3
-OPTION_QUIT = 4
+OPTION_FINDWORD = '1'
+OPTION_FINDANAGRAMS = '2'
+OPTION_WORDVALUE = '3'
+OPTION_PLAYGAME = '4'
+OPTION_QUIT = '5'
 
 """ PROGRAM INITIALIZATION """
 # this file is uploaded from the Moby Words project; see http://icon.shef.ac.uk/Moby/mwords.html for details
@@ -24,6 +25,9 @@ aDict = Anagrams.anagrams(sDict.words)
 bag = Tiles.tile_bag()
 #debugging: print('z: ' + str(bag.valueof('z')))
 
+# this track whether user has been making valid menu choices.
+is_valid = False
+
 # TODO build user interface
 # main menu
 # - check if word is valid
@@ -38,19 +42,19 @@ def show_menu():
     lines.append("You have some options available:")
     lines.append("\t1. Check if a word is in my dictionary")
     lines.append("\t2. Find anagrams of a word or series of letters")
-    lines.append("\t3. Play Anagramarama")
-    lines.append("\t4. Quit :( ")
+    lines.append("\t3. Determine the score for a word.")
+    lines.append("\t4. Play Anagramarama")
+    lines.append("\t5. Quit :( ")
     lines.append("> ")
     for l in lines:
         print(l)
 # end show_menu
 
 def do_menu():
-    show_menu()
     global is_valid
-    is_valid = False
     while not is_valid:
         # solicit user input and act on it until we get valid input
+        show_menu()
         user_choice = raw_input()
         handle_menu_choice(user_choice)
 # end do_menu
@@ -72,7 +76,6 @@ def find_anagrams():
     # find anagrams of a word
     user_word = raw_input("Please enter a word or string of letters to check, or leave blank to exit.\n> ")
     while user_word != "":
-
         cohort = aDict.lookup(user_word)
         if (cohort != None):
             print(cohort)
@@ -91,20 +94,22 @@ def handle_menu_choice(i):
         # user wants to verify whether a word is in the dictionary
         check_word()
         is_valid = True # defensive coding - let's not cause an infinite loop!
-    if (i == OPTION_FINDANAGRAMS):
+    elif (i == OPTION_FINDANAGRAMS):
         # user wants to find anagrams for a word
         find_anagrams()
         is_valid = True # defensive coding - let's not cause an infinite loop!
-    if (i == OPTION_PLAYGAME):
+    elif (i == OPTION_WORDVALUE):
+        print("I'm sorry, word scoring has not been implemented yet!\n")
+        is_valid = False
+    elif (i == OPTION_PLAYGAME):
         print("I'm sorry, the game has not been implemented yet!\n")
-        show_menu()
-    if (i == OPTION_QUIT):
+        is_valid = False
+    elif (i == OPTION_QUIT):
         # option 4 is "quit", so exit the program
         is_valid = True # defensive coding - let's not cause an infinite loop!
         exit()
     else:
         print("You have made an invalid selection.  Please try again.\n")
-        show_menu()
 # end handle_menu_choice
 
 

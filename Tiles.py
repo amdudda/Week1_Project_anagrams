@@ -25,3 +25,11 @@ class tile_bag():
         # returns the number of tiles of that letter currently in the bag - make sure we convert the character to uppercase
         l = l.upper()
         return  self.tiles[l][0]
+
+    def wordscore(self,word):
+        # returns the score of a set of letters
+        # TODO does this really belong here, or in another object/method?
+        score = 0
+        for letter in word:
+            score += self.valueof(letter)
+        return score
