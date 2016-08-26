@@ -9,6 +9,7 @@ class dictionary():
         fin = open(filename)
         for line in fin:
             self.words.append(line.strip())
+        fin.close()
     # end init
 
     def find(self,word):

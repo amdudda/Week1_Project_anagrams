@@ -9,6 +9,7 @@ class tile_bag():
     # I'm using the Scrabble distribution - see https://en.wikipedia.org/wiki/Scrabble_letter_distributions#English
     def __init__(self):
         # build our bag of tiles
+        # TODO should this be an array of Letter objects instead?
         self.tiles = {'E' : [12, 1], 'A' : [9, 1], 'I' : [9, 1], 'O' : [8, 1], 'N' : [6, 1], 'R' : [6, 1],
                       'T' : [6, 1], 'L' : [4, 1], 'S' : [4, 1], 'U' : [4, 1], 'D' : [4, 2], 'G' : [3, 2],
                       'B' : [2,3], 'C' : [2,3], 'M' : [2,3], 'P' : [2,3], 'F' : [2, 4], 'H' : [2, 4],
