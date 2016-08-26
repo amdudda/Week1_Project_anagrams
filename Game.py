@@ -1,7 +1,8 @@
 """
 This encapsulates the game: take a dictionary, a bunch of anagrams, and a bag of tiles, and start playing
 """
-import Player,Rack,Tiles,Anagrams
+
+import Player,Rack,Tiles,Anagrams,Dictionary
 
 class Game():
     def __init__(self,lexicon,anagrams,bag):
@@ -12,10 +13,8 @@ class Game():
     # end init
 
     def playgame(self):
-        # yay encapsulation, we should be able to play the game from here... we may only hope
-        # debugging:
-        print(self.player.rack.tiles)
         """
+        yay encapsulation, we should be able to play the game from here... we may only hope...
         what does gameplay look like?
         1. show player their tiles
         2. let them enter a word
@@ -25,4 +24,16 @@ class Game():
         6. refill the rack
         7. return to #1
         """
+        self.showrack()
+        # solicit input and validate it
+        a_play = raw_input("Please enter a word.")
+        print(self.player.rack.isvalidplay(a_play), self.lexicon.find(a_play))
+        if (self.player.rack.isvalidplay(a_play) and self.lexicon.find(a_play)):
+            print("That is a valid play!")
+        # TODO: SCREEE-KRUNCH, need to implement more game steps
+
     # end playgame
+
+    def showrack(self):
+        print("You have the following letters available:")
+        print(self.player.rack.tiles)

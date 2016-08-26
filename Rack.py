@@ -28,3 +28,17 @@ class Rack():
                 self.tiles.append(drawn)
                 bag.decrementtile(drawn)
     # end loadtiles
+
+    def isvalidplay(self, playerword):
+        # verify the play uses only letters drawn from the rack
+        # copy the array so the original one is intact
+        playerword = playerword.upper()
+        avail = self.tiles[:]
+        for letter in playerword:
+            if letter not in avail:
+                return False
+            else:
+                avail.remove(letter)
+        # if we get past all that, it's a valid play as far as the rack cares and we can return true.
+        return True
+
