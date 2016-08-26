@@ -1,5 +1,14 @@
 import Dictionary, Anagrams, Tiles
 
+""" STATIC VALUES"""
+
+# some static values
+OPTION_FINDWORD = 1
+OPTION_FINDANAGRAMS = 2
+OPTION_PLAYGAME = 3
+OPTION_QUIT = 4
+
+""" PROGRAM INITIALIZATION """
 # this file is uploaded from the Moby Words project; see http://icon.shef.ac.uk/Moby/mwords.html for details
 wordlist = "scrabble.txt"
 
@@ -37,6 +46,7 @@ def show_menu():
 # end show_menu
 
 def do_menu():
+    show_menu()
     global is_valid
     is_valid = False
     while not is_valid:
@@ -58,12 +68,37 @@ def check_word():
     do_menu()
 # end check_word
 
+def find_anagrams():
+    # find anagrams of a word
+    user_word = raw_input("Please enter a word or string of letters to check, or leave blank to exit.\n> ")
+    while user_word != "":
+
+        cohort = aDict.lookup(user_word)
+        if (cohort != None):
+            print(cohort)
+        else:
+            print('We have no anagrams on file for ' + user_word)
+        # prompt for fresh input
+        user_word = raw_input("Please enter a word or string of letters to check, or leave blank to exit.\n> ")
+    # return to main menu when done
+    do_menu()
+# end find_anagrams
+
 # handles main menu user input
 def handle_menu_choice(i):
     global is_valid
-    if (i == '1'):
+    if (i == OPTION_FINDWORD):
+        # user wants to verify whether a word is in the dictionary
         check_word()
-    if (i == '4'):
+        is_valid = True # defensive coding - let's not cause an infinite loop!
+    if (i == OPTION_FINDANAGRAMS):
+        # user wants to find anagrams for a word
+        find_anagrams()
+        is_valid = True # defensive coding - let's not cause an infinite loop!
+    if (i == OPTION_PLAYGAME):
+        print("I'm sorry, the game has not been implemented yet!\n")
+        show_menu()
+    if (i == OPTION_QUIT):
         # option 4 is "quit", so exit the program
         is_valid = True # defensive coding - let's not cause an infinite loop!
         exit()
@@ -76,5 +111,4 @@ def handle_menu_choice(i):
 
 """ BODY OF CODE  """
 # print our menu
-show_menu()
 do_menu()
