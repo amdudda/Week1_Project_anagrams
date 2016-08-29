@@ -10,7 +10,8 @@ This just prints out the values of various letters.  I used the point values ass
 
 ### Check if a word is in my dictionary
 
-This lets a user enter a string and the program reports whether it's in the dictionary.
+This lets a user enter a string and the program reports whether it's in the dictionary.  The program generates a 
+dictionary from scrabble.txt, which is simply a wordlist from the Moby project at http://icon.shef.ac.uk/Moby/mwords.html.
 
 ### Find anagrams of a word or series of letters
 
